@@ -1,0 +1,22 @@
+#lang sicp
+(define (count-change amount)
+
+  (define (cc amount kinds)
+    (cond ((= amount 0) 1)
+          ((or (< amount 0) (= kinds 0)) 0)
+          (else (+ (cc (- amount (denom kinds))kinds)
+                   (cc amount (- kinds 1))))
+          )
+    )
+  (define (denom kinds)
+    (cond ((= kinds 1) 1)
+          ((= kinds 2) 2)
+          ((= kinds 3) 5)
+          ((= kinds 4) 10)
+          ((= kinds 5) 20)
+          ((= kinds 6) 50)
+     )
+   )
+  (cc amount 6)
+  )
+  
